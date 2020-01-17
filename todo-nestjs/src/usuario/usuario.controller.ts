@@ -8,7 +8,7 @@ export class UsuarioController {
 
   @Get('test')
   test() {
-    return 'it works';
+    return 'usuario: it works';
   }
 
 }
