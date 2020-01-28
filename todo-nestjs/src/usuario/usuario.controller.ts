@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Res } from '@nestjs/common';
 
 @Controller('usuario')
 
@@ -9,6 +9,13 @@ export class UsuarioController {
   @Get('test')
   test() {
     return 'usuario: it works';
+  }
+
+  @Get('ruta/principal')
+  principal(
+    @Res() res,
+  ) {
+    res.render('usuario/rutas/principal')
   }
 
 }

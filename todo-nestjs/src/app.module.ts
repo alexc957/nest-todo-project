@@ -14,18 +14,14 @@ import { TagEntity } from './tag/tag.entity';
 
 @Module({
   imports: [
-    UsuarioModule,
-    TareaModule,
-    EstadoModule,
-    TagModule,
     TypeOrmModule.forRoot({
-      name: 'proyectoWeb',
+
       type: 'mysql',
       host: 'localhost',
       port: 32769,
       username: 'root',
       password: 'alex1995',
-      dropSchema: true,
+      dropSchema: false,
       database: 'tododb',
       entities: [
         UsuarioEntity,
@@ -35,6 +31,11 @@ import { TagEntity } from './tag/tag.entity';
       ],
       synchronize: true,
     }),
+    UsuarioModule,
+    TareaModule,
+    EstadoModule,
+    TagModule,
+
   ],
   controllers: [AppController],
   providers: [AppService],

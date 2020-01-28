@@ -5,7 +5,7 @@ import { TareaEntity } from '../tarea/tarea.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([TareaEntity], 'proyectoWeb')
+    TypeOrmModule.forFeature([TareaEntity], )
   ],
   controllers: [TagController],
   providers: [],

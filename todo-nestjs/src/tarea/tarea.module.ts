@@ -6,7 +6,7 @@ import { TareaService } from './tarea.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([TareaEntity], 'proyectoWeb'),
+    TypeOrmModule.forFeature([TareaEntity], ),
   ],
   controllers: [TareaController],
   providers: [],

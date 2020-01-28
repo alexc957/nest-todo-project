@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class UsuarioService {
   constructor(
-    // @InjectRepository(UsuarioEntity) private repositorioUsuario: Repository<UsuarioEntity>,
+     @InjectRepository(UsuarioEntity) private repositorioUsuario: Repository<UsuarioEntity>,
   ) {  }
 
   getOne(id) {

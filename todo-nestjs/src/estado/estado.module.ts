@@ -5,12 +5,11 @@ import { EstadoEntity } from './estado.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([EstadoEntity], 'proyectoWeb'),
+    TypeOrmModule.forFeature([EstadoEntity], ),
   ],
   controllers: [EstadoController],
   providers: [],
   exports: [],
-  
 })
 export  class EstadoModule {
 
