@@ -39,7 +39,7 @@ export  class TareaEntity {
     unique: false,
   })
   @Column({
-    type: 'date',
+    type: 'varchar',
     nullable: false,
     name: 'fecha_inicio',
   })
@@ -49,7 +49,7 @@ export  class TareaEntity {
     unique: false,
   })
   @Column({
-    type: 'date',
+    type: 'varchar',
     nullable: false,
     name: 'fecha_fin',
   })

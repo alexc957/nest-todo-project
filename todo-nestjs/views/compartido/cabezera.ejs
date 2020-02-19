@@ -7,10 +7,39 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="#">Features</a>
-            <a class="nav-item nav-link" href="#">Pricing</a>
-            <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-item nav-link active" href="#">Mis Tareas <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="#">TODO</a>
+            <a class="nav-item nav-link" href="#">DOING</a>
+            <a class="nav-item nav-link" href="#">DONE</a>
+
+
         </div>
+
     </div>
+    <ul class="navbar-nav justify-content-end">
+        <%if (usuario) {%>
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="/usuario/logout">Log Out</a>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="/usuario/ruta/cuenta">Mi Cuenta</a>
+
+            </li>
+
+
+        <% } else  {%>
+            <li class="nav-item">
+                <a class="nav-item nav-link" href="/usuario/ruta/signUp">Sign Up</a>
+
+            </li>
+        <li class="nav-item">
+            <a class="nav-item nav-link" href="/usuario/ruta/login">Login</a>
+
+        </li>
+
+        <%}%>
+
+
+    </ul>
 </nav>
