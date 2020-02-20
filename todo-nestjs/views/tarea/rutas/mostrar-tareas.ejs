@@ -1,17 +1,43 @@
 <%- include('../../compartido/cabezera', {usuario: datos.usuario}) %>
 
 <div class="container">
+
+
+
+    <br>
+    <% if(datos.error){ %>
+        <div class="alert alert-danger" role="alert">
+            <%= datos.error %>
+        </div>
+    <% } %>
+    <% if(datos.mensaje){ %>
+        <div class="alert alert-success" role="alert">
+            <%= datos.mensaje %>
+        </div>
+    <% } %>
+
+    <br>
+    <a  href="/tarea/ruta/nuevaTarea">
+        <button
+                class="btn btn-primary"
+                type="submit">
+            Añadir Tarea
+        </button>
+
+    </a>
     <br>
     <br>
-    <br>
+    <% datos.tareas.forEach((tarea) => { %>
     <div class="card" style="width: 95%;">
 
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title"><%= tarea.nombre %></h5>
+            <p class="card-text"><%= tarea.descripcion %></p>
+            <a href="/tarea/ruta/verTarea?idTarea=<%= tarea.id %>" class="btn btn-primary">Ver Tarea</a>
         </div>
     </div>
+        <br>
+    <%})%>
 
 </div>
 

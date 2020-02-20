@@ -14,6 +14,26 @@ export class TareaService {
     return this.repositorioTarea.findOne(id);
   }
 
+  saveOne(tarea) {
+    return this.repositorioTarea.save(tarea);
+  }
+
+  deleteOne(id: number) {
+    return this.repositorioTarea.delete(id);
+  }
+
+  getTags(
+    relations1: any = [],
+    whereNormal: any = {},
+  ) {
+      this.repositorioTarea.findOne({
+        relations: relations1,
+        where: whereNormal,
+      })
+  }
+
+
+
 
   search(
     whereNormal: any = {},

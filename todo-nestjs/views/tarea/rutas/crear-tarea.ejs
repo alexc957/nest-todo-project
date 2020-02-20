@@ -1,0 +1,130 @@
+
+<%- include('../../compartido/cabezera', {usuario: datos.usuario}) %>
+<% const estaEditando = datos.tarea != undefined %>
+<% console.log('estaEditando ', estaEditando) %>
+<div class="container">
+    <% if(datos.error){ %>
+        <div class="alert alert-danger" role="alert">
+            <%= datos.error %>
+        </div>
+    <% } %>
+
+
+
+    <form
+            action="/tarea/guardar<%= estaEditando? '/'+datos.id : '' %>"
+            method="POST" >
+
+        <div class="form-group">
+            <label for="tituloID">Titulo</label>
+            <input id="tituloID"
+                   type="text"
+                   name="nombre"
+                   value="<%= estaEditando? datos.tarea.nombre : '' %>"
+                   placeholder="Ej: Lavar la ropa"
+                   class="form-control">
+            <small id="usernameIDHelp"
+                   class="form-text text-muted">
+                Ingresa el nombre/titulo de la tarea
+            </small>
+        </div>
+         <div class="form-group">
+
+
+            <label for="descripcionID">Descripcion</label>
+            <textarea id="descripcionID"
+                   type="text"
+                   name="descripcion"
+
+                      class="form-control">
+
+            <%= estaEditando? datos.tarea.descripcion : '' %>"
+            </textarea>
+            <small id="descripcionIDHelp"
+                   class="form-text text-muted">
+                ingresa la descripcion de la tarea: minimo 4 caracteres y maximo 40
+            </small>
+
+
+        </div>
+
+        <div class="form-group">
+            <label for="fechaInicio">Fecha de Inicio</label>
+            <input id="fechaInicio"
+                   type="date"
+                   name="fechaInicio"
+                   placeholder="Ej: 02/05/2012"
+                   value="<%= estaEditando? new Date(datos.tarea.fechaInicio).toISOString().split('T')[0] : '' %>"
+                   class="form-control">
+            <small id="fechaInicioIDHelp"
+                   class="form-text text-muted">
+                fecha de inico de la tarea: mm/dd/aa
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="fechaInicio">Fecha de culminación prevista</label>
+            <input id="fechaFin"
+                   type="date"
+                   name="fechaFin"
+                   placeholder="Ej: 02/05/2013"
+                   value="<%= estaEditando? new Date(datos.tarea.fechaFin).toISOString().split('T')[0] : '' %>"
+
+                   class="form-control">
+            <small id="fechaInicioIDHelp"
+                   class="form-text text-muted">
+                fecha de fin prevista para la tarea: mm/dd/aa
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="estado">Example multiple select</label>
+            <select
+                    class="form-control"
+                    id="estado"
+
+                    name="estado">
+                <option
+                        value="TODO"
+                        selected="<%= estaEditando && datos.estado === 'TODO'? 'selected' : ''%>"
+                >TODO
+                </option>
+                <option
+                        value="DOING"
+                        selected="<%= estaEditando  && datos.estado === 'DOING'? 'selected' : ''%>"
+                >DOING
+                </option>
+                <option
+                        value="DONE"
+                        selected="<%= estaEditando  && datos.estado === 'DONE'? 'selected' : ''%>"
+                >DONE</option>
+
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="tagsID">Tags de la tarea</label>
+            <input id="tagsID"
+                   type="text"
+                   name="tags"
+                   placeholder="Ej: lavar,ropa,javascript"
+                   value="<%= estaEditando? datos.tagsNames : '' %>"
+                   class="form-control">
+            <small id="tagsIDHelp"
+                   class="form-text text-muted">
+               Ingresa las tags de la tarea separadas por una coma
+            </small>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            <%= estaEditando? 'Actualizar ' : 'Guardar Tarea'%>
+        </button>
+    </form>
+</div>
+
+
+<%- include('../../compartido/footer') %>
+
+
+
+

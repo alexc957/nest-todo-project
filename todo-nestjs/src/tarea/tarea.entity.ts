@@ -31,7 +31,8 @@ export  class TareaEntity {
   @Column({
     type: 'varchar',
     nullable: false,
-    name: 'descripcion'
+    name: 'descripcion',
+    default: ' ',
   })
   descripcion: string;
 
@@ -63,7 +64,10 @@ export  class TareaEntity {
   @JoinColumn()
   estado: EstadoEntity;
 
-  @ManyToMany(type => TagEntity)
+  // tslint:disable-next-line:no-shadowed-variable
+  @ManyToMany(type => TagEntity,tag => tag.tareas, {
+    cascade: true,
+  })
   @JoinTable()
   tags: TagEntity[];
 

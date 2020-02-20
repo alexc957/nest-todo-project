@@ -1,4 +1,5 @@
-import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { TareaEntity } from '../tarea/tarea.entity';
 
 @Entity('tag')
 export class TagEntity {
@@ -20,5 +21,8 @@ export class TagEntity {
     name: 'nombre_tag'
   })
   tagNombre: string;
+
+  @ManyToMany(type => TareaEntity, tarea => tarea.tags)
+  tareas: TareaEntity[];
 
 }
