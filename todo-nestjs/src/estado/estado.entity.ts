@@ -1,4 +1,5 @@
-import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { TareaEntity } from '../tarea/tarea.entity';
 
 @Entity('estado')
 export  class EstadoEntity {
@@ -21,4 +22,6 @@ export  class EstadoEntity {
   })
   nombreEstado: string;
 
+  /* @OneToOne(type => TareaEntity, tarea => tarea.estado) // specify inverse side as a second parameter
+  tarea: TareaEntity; */
 }

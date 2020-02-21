@@ -22,7 +22,7 @@ export class TagEntity {
   })
   tagNombre: string;
 
-  @ManyToMany(type => TareaEntity, tarea => tarea.tags)
-  tareas: TareaEntity[];
+  /* @ManyToMany(type => TareaEntity, tarea => tarea.tags)
+  tareas: TareaEntity[]; */
 
 }

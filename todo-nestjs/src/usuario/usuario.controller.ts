@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, Req, Res, Session } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query, Req, Res, Session } from '@nestjs/common';
 import { UsuarioEntity } from './usuario.entity';
 import { UsuarioCreateDto } from './usuario.create-dto';
 import { validate } from 'class-validator';
@@ -67,7 +67,7 @@ export class UsuarioController {
     if ( usuarios.length > 0) {
       if (usuarios[0].passwordHash === passwordHash) {
         session.user = usuarios[0];
-        res.redirect('/tarea/ruta/mostrar-tareas')
+        res.redirect('/tarea/ruta/mostrar-tareas');
       } else {
         res.redirect('/usuario/ruta/login?errores=bad credentials');
       }
@@ -78,8 +78,39 @@ export class UsuarioController {
 
   }
 
+  @Post('actualizar/:id')
+  async actualizarCuenta(
+    @Param('id') id: string,
+    @Session() session,
+    @Res() res,
+    @Body() usuario: UsuarioEntity,
+  )  {
+    console.log('id usuario' , id);
+    console.log('llegue aqui ', usuario)
+    try {
+      const usuarioDto = new UsuarioCreateDto();
+      usuarioDto.nombre = usuario.nombre;
+      usuarioDto.apellido = usuario.apellido;
+      usuarioDto.correo = usuario.correo;
+      usuarioDto.passwordHash = usuario.passwordHash;
+      console.log(usuario);
+      const errores = await validate(usuarioDto);
+      if (errores.length > 0) {
+        console.log(errores);
+        res.redirect('/usuario/ruta/cuenta?errores=error validando');
+      } else {
+        usuario.id = +id;
+        // session.user = usuario;
+        await this.usuarioService.saveOne(usuario);
+        res.redirect('/tarea/ruta/mostrar-tareas');
+      }
+    } catch (e) {
+      res.redirect('/usuario/ruta/cuenta?errores=error validando');
+    }
 
 
+
+  }
 
   @Post('signUp')
   async signUp(
@@ -122,14 +153,16 @@ export class UsuarioController {
 
  }
  @Get('ruta/cuenta')
- cuenta(
+async cuenta(
    @Session() session,
    @Res() res,
  ) {
     if (session.user) {
+      const user = await this.usuarioService.getOne(session.user.id);
+      console.log('este usuario?', user);
       res.render('usuario/rutas/cuenta',{
         datos: {
-          usuario: session.user,
+          usuario: user,
         },
       });
     } else {

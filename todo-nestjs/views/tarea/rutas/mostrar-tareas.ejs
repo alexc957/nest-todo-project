@@ -17,6 +17,8 @@
     <% } %>
 
     <br>
+
+
     <a  href="/tarea/ruta/nuevaTarea">
         <button
                 class="btn btn-primary"
@@ -26,6 +28,29 @@
 
     </a>
     <br>
+    <form action="/tarea/ruta/mostrar-tareas"
+          method="GET">
+        <div class="form-group">
+            <label for="buscarID">Buscar</label>
+            <input  id="buscarID"
+                    type="text"
+                    name="nombreConsulta"
+                    class="form-control"
+                    title="Ingresar por nombre"
+                    placeholder="Ej: nombre "
+
+            >
+
+            <small id="buscarIDHelp"
+                   class="form-text text-muted">
+                Puede buscar por cedula o nombre
+            </small>
+
+        </div>
+
+    </form>
+
+
     <br>
     <% datos.tareas.forEach((tarea) => { %>
     <div class="card" style="width: 95%;">
@@ -33,6 +58,7 @@
         <div class="card-body">
             <h5 class="card-title"><%= tarea.nombre %></h5>
             <p class="card-text"><%= tarea.descripcion %></p>
+
             <a href="/tarea/ruta/verTarea?idTarea=<%= tarea.id %>" class="btn btn-primary">Ver Tarea</a>
         </div>
     </div>

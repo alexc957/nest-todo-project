@@ -13,7 +13,7 @@
 
 
     <form
-            action="/usuario/signUp"
+            action="/usuario/actualizar/<%= datos.usuario.id %>"
             method="POST" >
         <div class="form-group">
             <label for="nombreId">Nombre</label>
@@ -21,7 +21,9 @@
                     type="text"
                     class="form-control"
                     id="nombreId"
-                    name="nombre">
+                    name="nombre"
+                    value="<%= datos.usuario.nombre %>"
+            >
         </div>
 
         <div class="form-group">
@@ -30,22 +32,37 @@
                     type="text"
                     class="form-control"
                     id="apellidoId"
-                    name="apellido">
+                    name="apellido"
+                    value="<%= datos.usuario.apellido %>"
+            >
         </div>
 
 
 
         <div class="form-group">
             <label for="exampleInputEmail1">Email </label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="correo">
+            <input
+                    type="email"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    name="correo"
+                    value="<%= datos.usuario.correo %>"
+            >
         </div>
 
         <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" name="passwordHash">
+            <input
+                    type="password"
+                    class="form-control"
+                    id="exampleInputPassword1"
+                    name="passwordHash"
+                    value="<%= datos.usuario.passwordHash %>"
+            >
         </div>
 
-        <button type="submit" class="btn btn-primary">Registrarse</button>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
     </form>
 
 </div>

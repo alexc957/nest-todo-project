@@ -10,7 +10,7 @@ export  class TareaEntity {
   @PrimaryGeneratedColumn({
     type: 'int',
     unsigned: true,
-    name: 'id'
+    name: 'id',
 
   })
   id: number;
@@ -21,7 +21,7 @@ export  class TareaEntity {
   @Column({
     type: 'varchar',
     nullable: false,
-    name: 'nombre'
+    name: 'nombre',
   })
   nombre: string;
 
@@ -57,19 +57,39 @@ export  class TareaEntity {
   fechaFin: string;
 
   // tslint:disable-next-line:no-shadowed-variable
+
   @ManyToOne(type => UsuarioEntity, usuario => usuario.tareas)
   usuario: UsuarioEntity;
-  // tslint:disable-next-line:no-shadowed-variable
-  @OneToOne(type => EstadoEntity)
-  @JoinColumn()
-  estado: EstadoEntity;
 
-  // tslint:disable-next-line:no-shadowed-variable
-  @ManyToMany(type => TagEntity,tag => tag.tareas, {
-    cascade: true,
+  /*
+ // tslint:disable-next-line:no-shadowed-variable
+ @OneToOne(type => EstadoEntity)
+ @JoinColumn()
+ estado: EstadoEntity;
+
+ // tslint:disable-next-line:no-shadowed-variable
+ @ManyToMany(type => TagEntity, tag => tag.tareas, {
+   cascade: true,
+ })
+ @JoinTable()
+ tags: Promise<TagEntity[]> | TagEntity[];
+*/
+  @Column({
+    type: 'varchar',
+    nullable: false,
+    name: 'estadoNombre',
+    default: 'TODO',
   })
-  @JoinTable()
-  tags: TagEntity[];
+  estadoNombre: string;
+
+  @Column({
+    type: 'varchar',
+    nullable: false,
+    name: 'actualTags',
+    default: '',
+  })
+  actualTags: string;
+
 
 
 }

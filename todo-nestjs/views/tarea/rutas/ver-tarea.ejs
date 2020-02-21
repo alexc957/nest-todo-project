@@ -11,9 +11,17 @@
             <h6 class="card-subtitle mb-2 text-muted">fecha inicio <%= datos.tarea.fechaInicio %></h6>
             <h6 class="card-subtitle mb-2 text-muted">fecha inicio <%= datos.tarea.fechaFin %></h6>
 
+            <h6 class="card-subtitle mb-2 text-muted">Estado <%= datos.tarea.estadoNombre %></h6>
+
+
+
             <p class="card-text"><%= datos.tarea.descripcion %></p>
             <br>
-
+            <div class="dropdown-divider"></div>
+             <% const tags = datos.tarea.actualTags.split(',') %>
+            <% tags.forEach((tag) =>{  %>
+                <span class="badge badge-info"><%= tag %></span>
+            <%})%>
             <div class="dropdown-divider"></div>
 
             <a href="/tarea/ruta/editar/<%= datos.tarea.id%>" class="btn btn-primary">Editar</a>

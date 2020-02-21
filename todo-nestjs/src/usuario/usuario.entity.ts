@@ -52,5 +52,5 @@ export class UsuarioEntity {
   passwordHash: string;
 
   @OneToMany(type => TareaEntity, tarea => tarea.usuario)
-  tareas: TareaEntity[]
+  tareas: TareaEntity[];
 }

@@ -36,10 +36,7 @@
                    type="text"
                    name="descripcion"
 
-                      class="form-control">
-
-            <%= estaEditando? datos.tarea.descripcion : '' %>"
-            </textarea>
+                      class="form-control"><%= estaEditando? datos.tarea.descripcion : '' %></textarea>
             <small id="descripcionIDHelp"
                    class="form-text text-muted">
                 ingresa la descripcion de la tarea: minimo 4 caracteres y maximo 40
@@ -78,28 +75,17 @@
         </div>
 
         <div class="form-group">
-            <label for="estado">Example multiple select</label>
-            <select
-                    class="form-control"
-                    id="estado"
-
-                    name="estado">
-                <option
-                        value="TODO"
-                        selected="<%= estaEditando && datos.estado === 'TODO'? 'selected' : ''%>"
-                >TODO
-                </option>
-                <option
-                        value="DOING"
-                        selected="<%= estaEditando  && datos.estado === 'DOING'? 'selected' : ''%>"
-                >DOING
-                </option>
-                <option
-                        value="DONE"
-                        selected="<%= estaEditando  && datos.estado === 'DONE'? 'selected' : ''%>"
-                >DONE</option>
-
-            </select>
+            <label for="estadoID">Tags de la tarea</label>
+            <input id="estadoID"
+                   type="text"
+                   name="estado"
+                   placeholder="Ej: DONE"
+                   value="<%= estaEditando? datos.tarea.estadoNombre : '' %>"
+                   class="form-control">
+            <small id="estadoIDHelp"
+                   class="form-text text-muted">
+                Ingresa cualquiera de los estados: TODO, DONE, DOING
+            </small>
         </div>
 
         <div class="form-group">
@@ -108,7 +94,7 @@
                    type="text"
                    name="tags"
                    placeholder="Ej: lavar,ropa,javascript"
-                   value="<%= estaEditando? datos.tagsNames : '' %>"
+                   value="<%= estaEditando? datos.tarea.actualTags : '' %>"
                    class="form-control">
             <small id="tagsIDHelp"
                    class="form-text text-muted">

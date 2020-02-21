@@ -1,4 +1,4 @@
-import { IsDateString, IsNotEmpty, MaxLength, MinLength } from 'class-validator';
+import { IsDateString, IsIn, IsNotEmpty, MaxLength, MinLength } from 'class-validator';
 
 export class TareaCreateDto {
 
@@ -7,14 +7,18 @@ export class TareaCreateDto {
 
   @IsNotEmpty()
   @MinLength(5)
-  @MaxLength(40)
+  @MaxLength(2000)
   descripcion: string;
 
-  @IsDateString()
+
   @IsNotEmpty()
   fechaInicio: string;
 
-  @IsDateString()
+
   @IsNotEmpty()
   fechaFin: string;
+
+  @IsNotEmpty()
+  @IsIn(['DONE', 'DOING', 'TODO'])
+  estadoNombre: string;
 }
